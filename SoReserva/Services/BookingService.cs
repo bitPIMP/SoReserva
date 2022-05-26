@@ -52,6 +52,7 @@ namespace SoReserva.Services
 
             var CriticalBeginningDate = _context.Booking.Where(x => x.Beginning > d_devolucao).OrderBy(x => x.Beginning).Select(x=> x.Beginning).FirstOrDefault();
             string CriticalBeginningDateString = CriticalBeginningDate.ToString();
+
             //string CriticalBeginningDateString = CriticalBeginningDate.Beginning?.ToString(); //Operator ? cannot applied to operand of type DateTime 
 
 
