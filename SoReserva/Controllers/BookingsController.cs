@@ -14,14 +14,15 @@ namespace SoReserva.Controllers
     public class BookingsController : Controller
     {
         private readonly SoReservaContext _context;
-        private readonly BookingService _bookingService;        
+        private readonly BookingService _bookingService;
 
-        public BookingsController(SoReservaContext context)
+        public BookingsController(SoReservaContext context, BookingService bookingService)
         {
             _context = context;
+            _bookingService = bookingService;
         }
 
-        
+
 
 
 
@@ -62,13 +63,33 @@ namespace SoReserva.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,NameOfVehicle,Beginning,Returning")] Booking booking)
         {
-            if (ModelState.IsValid)
+
+            // Dúvidas
+            // 01) como chamar o método PodeCriarReserva(d_início, d_devolucao) de BookingService ?
+            // 02) como passar os argumentos Beginning e Returning o PodeCriarReserva? 
+            // Não chama o método aqui. Tem que transferir essa estrutura para o BookingService.
+            // Acho que tem que declarar tudo lá. 
+
+            if (_bookingService.PodeCriarReserva(booking.Beginning, booking.Returning))
             {
-                
-                _context.Add(booking);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+                if (ModelState.IsValid)
+                {
+
+                    _context.Add(booking);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+
+            } else return RedirectToAction(nameof(Index));
+
+
+            //if (ModelState.IsValid)
+            //{
+
+            //    _context.Add(booking);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
 
 
             return View(booking);
