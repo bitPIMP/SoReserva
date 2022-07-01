@@ -65,11 +65,11 @@ namespace SoReserva.Services
 
             //if ((ClosestReturningDate == DateTime.MinValue && ClosestlBeginningDate == DateTime.MinValue)) return true;//ok, se não tiver nada marcado pode criar uma reserva qualquer 
 
-            // ClosestBeginningDate está com o MinValue e deveria estar com o MaxValue. 
+            
             if ((DateTime.Compare(ClosestlBeginningDate, CriticalBeginningDate) == 1) 
                 && ((DateTime.Compare(CriticalBeginningDate, d_inicio) == 1)) 
                 && (DateTime.Compare(d_inicio, CriticalReturningDate) == 1)) 
-                return true;  // do jeito que o código está ela não chega aqui.            
+                return true;  
             
             return false;
         }
