@@ -11,6 +11,7 @@ namespace SoReserva.Services
     {
         private readonly SoReservaContext _context;
 
+        // acho que eu preciso injetar essa dependência usando interface
         public BookingService(SoReservaContext context)
         {
             _context = context;
