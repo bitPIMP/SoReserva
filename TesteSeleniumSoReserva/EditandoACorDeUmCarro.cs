@@ -11,12 +11,22 @@ using Xunit;
 using SoReserva.Services;
 using SoReserva.Data;
 using Microsoft.EntityFrameworkCore;
+using SoReserva.Interface;
+
 
 namespace TesteSeleniumSoReserva
 {
 
     public class EditandoACorDeUmCarro
     {
+        private readonly IBookingService _bookingService;
+
+        public EditandoACorDeUmCarro(IBookingService bs)
+        {
+            _bookingService = bs;
+        }
+
+
         [Fact]
         public void TestandoInterfaceCarregaPaginaHomeEVerificaTitulo()
         {
@@ -33,23 +43,16 @@ namespace TesteSeleniumSoReserva
 
         [Fact]
         public void TestaBookingService()
-        {
+        {            
             //Arrange     
             IWebDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
-            #region Não consigo criar essa interface para injetar dependência nesse construtor
-            
-            ISoReservaContext m;
-            var teste = new BookingService(m);            
-            
-            #endregion
-            
             // Act
-            var a = teste.PodeCriarReserva(DateTime.Today.AddDays(-1), DateTime.Today.AddDays(3));
-            // teste é do tipo BookingService que oferece o método PodeCriarReserva()
+            bool a = _bookingService.PodeCriarReserva(DateTime.Today.AddDays(-1), DateTime.Today.AddDays(3));
+            // Tomei esse erro: The following constructor parameters did not have matching fixture data: IBookingService bs
 
             //Assert
-            Assert.True(false, a);
-        }            
+            Assert.False(a);
+        }
     }
-} 
+}
