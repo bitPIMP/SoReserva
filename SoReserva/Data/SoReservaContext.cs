@@ -7,7 +7,7 @@ using SoReserva.Models;
 
 namespace SoReserva.Data
 {
-    public class SoReservaContext : DbContext
+    public class SoReservaContext : DbContext, ISoReservaContext
     {
         public SoReservaContext (DbContextOptions<SoReservaContext> options)
             : base(options)
@@ -18,4 +18,17 @@ namespace SoReserva.Data
 
         public DbSet<SoReserva.Models.Vehicle> Vehicle { get; set; }
     }
+
+    public interface ISoReservaContext
+    {
+        void SoReservaContext(DbContextOptions<SoReservaContext> options)
+            : base(options)
+        {
+        }
+
+        DbSet<Booking> Booking { get; set; }
+
+        DbSet<Vehicle> Vehicle { get; set; }
+    }
+
 }
