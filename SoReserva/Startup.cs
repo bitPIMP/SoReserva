@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SoReserva.Data;
 using SoReserva.Services;
+using SoReserva.Interface;
 
 namespace SoReserva
 {
@@ -32,7 +33,7 @@ namespace SoReserva
             services.AddDbContext<SoReservaContext>(options =>
                     options.UseNpgsql(Configuration.GetConnectionString("SRConnection")));
 
-            services.AddScoped<BookingService>();
+            services.AddScoped<IBookingService, BookingService>();
 
         }
 
