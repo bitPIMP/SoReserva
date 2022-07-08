@@ -8,7 +8,7 @@ using Xunit;
 namespace TesteSeleniumSoReserva
 {
     
-    public class EditandoACorDeUmCarro
+    public class t1
     {
         [Fact]
         public void TestandoInterfaceCarregaPaginaHomeEVerificaTitulo() 
