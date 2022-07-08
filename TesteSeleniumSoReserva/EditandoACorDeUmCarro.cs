@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SoReserva.Interface;
 using System.IO;
 using System.Reflection;
 using Xunit;
@@ -10,6 +11,14 @@ namespace TesteSeleniumSoReserva
     
     public class EditandoACorDeUmCarro
     {
+        private readonly IBookingService _bookingService;
+
+        public EditandoACorDeUmCarro(IBookingService bs)
+        {
+            _bookingService = bs;
+        }
+
+
         [Fact]
         public void TestandoInterfaceCarregaPaginaHomeEVerificaTitulo() 
         {
