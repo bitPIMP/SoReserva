@@ -1,4 +1,5 @@
 ﻿using SoReserva.Data;
+using SoReserva.Interface;
 using SoReserva.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SoReserva.Services
 {
-    public class BookingService
+    public class BookingService : IBookingService
     {
         private readonly SoReservaContext _context;
 

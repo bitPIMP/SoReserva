@@ -7,7 +7,7 @@ using SoReserva.Services;
 
 namespace TesteSeleniumSoReserva
 {
-    internal class t1Fixture : IDisposable
+    public class t1Fixture : IDisposable
     {
 
         public t1Fixture()
