@@ -4,13 +4,15 @@ using SoReserva.Interface;
 using System.IO;
 using System.Reflection;
 using Xunit;
-
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace TesteSeleniumSoReserva
 {
     
     public class EditandoACorDeUmCarro
     {
+
         private readonly IBookingService _bookingService;
 
         public EditandoACorDeUmCarro(IBookingService bs)
@@ -31,6 +33,13 @@ namespace TesteSeleniumSoReserva
             //Assert
             Assert.Contains("Home Page - SoReserva", driver.Title);
 
-        }       
+        }
+
+        //[Fact]
+        //public void TestePodeCriarReserva() 
+        //{
+        //    bool a = _bookingService.PodeCriarReserva(DateTime.Today.AddDays(-1), DateTime.Today.AddDays(3));           
+        //    Assert.False(a);
+        //}
     }
 }
